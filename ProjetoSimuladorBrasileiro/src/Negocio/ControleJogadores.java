@@ -57,7 +57,7 @@ public class ControleJogadores {
 		}
 	}
 	
-	public double verificaPosicaoJogador(Jogadores jogador) {
+	public static  double verificaPosicaoJogador(Jogadores jogador) {
 		
 		
 		if(jogador.getPosicao() == jogador.getPosicaoAtual()) {

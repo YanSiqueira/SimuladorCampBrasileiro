@@ -8,7 +8,7 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 	private int index; 
 	public final static int tamanho = 380; 
 	
-	public void RepositorioContasArray() {
+	public  RepositorioPartidaArray() {
 		this.index = 0; 
 		this.listaPartidas = new Partida[tamanho]; 
 	}
@@ -21,7 +21,7 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 	@Override
 	public void inserirPartida(Partida partida) {
 		// TODO Auto-generated method stub
-		listaPartidas[index] = partida; 
+		this.listaPartidas[index] = partida; 
 		this.index += 1; 
 		
 	}
@@ -77,7 +77,7 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 	public void listar() {
 		// TODO Auto-generated method stub
 		for(int a = 0; a < index; a++) {
-			System.out.println("Jogo: " + listaPartidas[a].getClubeCasa().getNome() + " x "  + listaPartidas[a].getClubeFora().getNome() + "Rodada: " + listaPartidas[a].getRodada());
+			System.out.println("Jogo: " + listaPartidas[a].getClubeCasa().getNome() +  " x "  + listaPartidas[a].getClubeFora().getNome() + "Rodada: " + listaPartidas[a].getRodada());
 		}
 		
 	}

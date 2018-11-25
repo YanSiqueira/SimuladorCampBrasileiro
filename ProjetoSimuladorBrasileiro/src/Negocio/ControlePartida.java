@@ -7,9 +7,10 @@ import java.util.Random;
 import Repositorio.RepositorioPartida;
 import Repositorio.RepositorioPartidaArray;
 import Repositorio.RepositorioClubeArray;
-import Negocio.ControleJogadores;
 
-public class ControlePartida {
+
+public class ControlePartida { 
+	
 	
 	RepositorioPartida repositorio = new RepositorioPartidaArray(); 
 	
@@ -67,7 +68,7 @@ public class ControlePartida {
 		}
 	}
 	
-	public void resultadoPartida(Partida partida) {
+	public void resultadoPartida(Partida partida, ControleClube ctrClube) {
 		Random gerador = new Random(); 
 		
 		int resultadoRandom = gerador.nextInt(9); 
@@ -102,43 +103,44 @@ public class ControlePartida {
 		
 		// define a possibilidade de gols do time de casa 
 		
-		if(forcaElenco(partida.getClubeCasa()) >= 150) {
-			resultadoRandom = gerador.nextInt(10); 
-		}else if(forcaElenco(partida.getClubeCasa()) >= 100 && forcaElenco(partida.getClubeCasa()) < 150) {
-			resultadoRandom = gerador.nextInt(6); 
-		}else if(forcaElenco(partida.getClubeCasa()) >= 50 && forcaElenco(partida.getClubeCasa()) < 100) {
-			resultadoRandom = gerador.nextInt(3); 
-		}else {
-			resultadoRandom = gerador.nextInt(2); 
-		}
 		
-		if(resultadoRandom > 6) {
+		if(possibilidadeGol(partida.getClubeCasa()) > 6) {
 			partida.setGolCasa(partida.getGolCasa()+2);
-		}else if(resultadoRandom >= 2 && resultadoRandom <= 6) {
+		}else if(possibilidadeGol(partida.getClubeCasa()) >= 2 && possibilidadeGol(partida.getClubeCasa()) <= 6) {
 			partida.setGolCasa(partida.getGolCasa()+1);
 		}
 		
 		// define a possibilidade de gols do time de fora 
 		
-		if(forcaElenco(partida.getClubeFora()) >= 150) {
-			resultadoRandom = gerador.nextInt(10); 
-		}else if(forcaElenco(partida.getClubeFora()) >= 100 && forcaElenco(partida.getClubeFora()) < 150) {
-			resultadoRandom = gerador.nextInt(6); 
-		}else if(forcaElenco(partida.getClubeFora()) >= 50 && forcaElenco(partida.getClubeFora()) < 100) {
-			resultadoRandom = gerador.nextInt(3); 
-		}else {
-			resultadoRandom = gerador.nextInt(2); 
-		}
-		
-		if(resultadoRandom > 6) {
+		if(possibilidadeGol(partida.getClubeFora()) > 6) {
 			partida.setGolFora(partida.getGolFora()+2);
-		}else if(resultadoRandom >= 2 && resultadoRandom <= 6) {
+		}else if(possibilidadeGol(partida.getClubeFora()) >= 2 && possibilidadeGol(partida.getClubeFora()) <= 6) {
 			partida.setGolFora(partida.getGolFora()+2);
 		}
 		
 		partida.setStatusPartida(true);
+		ctrClube.atualizaDadosClube(partida.getClubeCasa(), partida);
+		ctrClube.atualizaDadosClube(partida.getClubeFora(), partida);
 		
 		repositorio.atualizaPartida(partida);
+		
+	}
+	
+	public int possibilidadeGol(Clube clube) {
+		int resultadoRandom = 0; 
+		Random gerador = new Random(); 
+		
+		if(forcaElenco(clube) >= 150) {
+			resultadoRandom = gerador.nextInt(10); 
+		}else if(forcaElenco(clube) >= 100 && forcaElenco(clube) < 150) {
+			resultadoRandom = gerador.nextInt(5); 
+		}else if(forcaElenco(clube) >= 50 && forcaElenco(clube) < 100) {
+			resultadoRandom = gerador.nextInt(2); 
+		}else {
+			resultadoRandom = gerador.nextInt(1); 
+		}
+		
+		return resultadoRandom;
 		
 	}
 	
@@ -147,7 +149,7 @@ public class ControlePartida {
 		
 		for(int a = 0; a < Clube.tamanhoJogador; a++) {
 			if(clube.getJogadores()[a].getTitular() == true) {
-				forca += clube.getJogadores()[a].getHabilidade(); 
+				forca += clube.getJogadores()[a].getHabilidade()*ControleJogadores.verificaPosicaoJogador(clube.getJogadores()[a]); 
 			}else {
 				forca += (clube.getJogadores()[a].getHabilidade())/2; 
 			}

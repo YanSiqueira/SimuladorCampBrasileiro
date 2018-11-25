@@ -1,7 +1,7 @@
 package Negocio;
 import Basicas.Clube;
 import Basicas.Jogadores;
-
+import Basicas.Partida;
 import Repositorio.RepositorioClube;
 import Repositorio.RepositorioClubeArray;
 import Repositorio.RepositorioJogadoresArray;
@@ -137,6 +137,47 @@ public class ControleClube {
 			}
 			
 		
+	}
+	
+	public void atualizaDadosClube(Clube clube, Partida partida) {
+		
+		if(clube.getNumeroRegistro() == partida.getClubeCasa().getNumeroRegistro()) {
+			
+			if(partida.getGolCasa() == partida.getGolFora()) {
+				
+				clube.setPontosCampAtual(clube.getPontosCampAtual()+1);
+				clube.setEmpateCampAtual(clube.getEmpateCampAtual()+1);
+				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolCasa()); 
+				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolFora()); 
+				
+			}else if(partida.getGolCasa() > partida.getGolFora()) {
+				
+				clube.setPontosCampAtual(clube.getPontosCampAtual()+3);
+				clube.setEmpateCampAtual(clube.getVitoriasCampAtual()+1);
+				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolCasa()); 
+				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolFora()); 
+			}
+			
+		}else if (clube.getNumeroRegistro() == partida.getClubeFora().getNumeroRegistro()){
+			
+			if(partida.getGolCasa() == partida.getGolFora()) {
+				
+				clube.setPontosCampAtual(clube.getPontosCampAtual()+1);
+				clube.setEmpateCampAtual(clube.getEmpateCampAtual()+1);
+				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolFora()); 
+				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolCasa()); 
+				
+			}else if(partida.getGolCasa() < partida.getGolFora()) {
+				
+				clube.setPontosCampAtual(clube.getPontosCampAtual()+3);
+				clube.setEmpateCampAtual(clube.getVitoriasCampAtual()+1);
+				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolFora()); 
+				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolCasa());  
+			}
+			
+		}
+		
+		atualizaClube(clube);
 	}
 	
 
