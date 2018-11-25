@@ -71,7 +71,7 @@ public class RepositorioClubeArray implements RepositorioClube{
 	public void listar() {
 		// TODO Auto-generated method stub
 		for(int a = 0; a<index; a++) {
-			System.out.println("Nome: "+ this.listaClubes[a].getNome());
+			System.out.println("Nome: "+ this.listaClubes[a].getNome() + " Pontos: " + this.listaClubes[a].getPontosCampAtual()+ " Saldo: " + (this.listaClubes[a].getGolsProCampAtual()-this.listaClubes[a].getGolsContraCampAtual()) );
 		}
 		
 		

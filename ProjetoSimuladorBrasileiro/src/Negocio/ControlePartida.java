@@ -90,9 +90,14 @@ public class ControlePartida {
 		// compara os elencos para verificar o resultado da partida
 		
 		if(forcaElenco(partida.getClubeCasa()) > forcaElenco(partida.getClubeFora())) {
-			partida.setGolCasa(partida.getGolCasa()+1);
+			resultadoRandom = gerador.nextInt(4); 
+			if(resultadoRandom > 0) {
+				partida.setGolCasa(partida.getGolCasa()+1);
+			}
 		}else if(forcaElenco(partida.getClubeCasa()) < forcaElenco(partida.getClubeFora())) {
-			partida.setGolFora(partida.getGolFora()+1);
+			if(resultadoRandom > 0) {
+				partida.setGolFora(partida.getGolFora()+1);
+			}
 		}else if(forcaElenco(partida.getClubeCasa()) == forcaElenco(partida.getClubeFora())) {
 			resultadoRandom = gerador.nextInt(3); 
 			if(resultadoRandom > 1) {

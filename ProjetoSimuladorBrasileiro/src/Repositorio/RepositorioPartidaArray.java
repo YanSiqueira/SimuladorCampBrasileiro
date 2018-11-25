@@ -77,7 +77,7 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 	public void listar() {
 		// TODO Auto-generated method stub
 		for(int a = 0; a < index; a++) {
-			System.out.println("Jogo: " + listaPartidas[a].getClubeCasa().getNome() +  " x "  + listaPartidas[a].getClubeFora().getNome() + "Rodada: " + listaPartidas[a].getRodada());
+			System.out.println("Jogo: " + listaPartidas[a].getClubeCasa().getNome() +  " x "  + listaPartidas[a].getClubeFora().getNome() + " Rodada: " + listaPartidas[a].getRodada());
 		}
 		
 	}

@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import Basicas.*;
 
 import java.util.Date;
+import java.util.Random;
 
 
 
@@ -20,6 +21,7 @@ public class Aplicacao {
 		ControleClube ctrClube = new ControleClube(); 
 		ControlePartida ctrPartida = new ControlePartida(); 
 		Date data = new Date(); 
+		Random ran = new Random(); 
 		
 		/*Jogadores jogador1 = new Jogadores("Caio", 22, 1, 1, 12, 1, 0);
 		Jogadores jogador2 = new Jogadores("Pedro", 22, 2, 2, 12, 2, 0);
@@ -31,6 +33,9 @@ public class Aplicacao {
 		
 		ctrClube.insereClube(clube1);
 		ctrClube.insereClube(clube2);
+		
+		
+		
 		/*Partida partida1 = new Partida(clube1, clube2, data, 1, false, 1); 
 		ctrPartida.inserePartida(partida1);*/
 		
@@ -39,12 +44,12 @@ public class Aplicacao {
 		int contadorIDjogador = 0; 
 		
 		for (int i = 0; i < 20; i++) {
-			String nome = JOptionPane.showInputDialog("Digite um nome "); 
-			String posicaoS = JOptionPane.showInputDialog("Digite uma posicao "); 
-			int posicao = Integer.parseInt(posicaoS); 
-			System.out.println("");
+			/*String nome = JOptionPane.showInputDialog("Digite um nome "); 
+			String posicaoS = JOptionPane.showInputDialog("Digite uma posicao ");
+			int posicao = Integer.parseInt(posicaoS); */
+			int posicao = ran.nextInt(8)+1; 
 			contadorIDjogador += 1; 
-			Jogadores jogador = new Jogadores(nome, 22, contadorIDjogador, posicao, 3*posicao, i+1, 0);
+			Jogadores jogador = new Jogadores("aaaa", 22, contadorIDjogador, posicao, 3*posicao, i+1, 0);
 			ctrJogadores.insereJogador(jogador);
 			ctrClube.incluiJogador(jogador, clube1, ctrJogadores);
 			if(i < 11) {
@@ -66,12 +71,12 @@ public class Aplicacao {
 		System.out.println(" ");
 		
 		for (int i = 0; i < 20; i++) {
-			String nome = JOptionPane.showInputDialog("Digite um nome "); 
-			String posicaoS = JOptionPane.showInputDialog("Digite uma posicao "); 
-			int posicao = Integer.parseInt(posicaoS); 
-			System.out.println("");
+			/*String nome = JOptionPane.showInputDialog("Digite um nome "); 
+			String posicaoS = JOptionPane.showInputDialog("Digite uma posicao ");
+			int posicao = Integer.parseInt(posicaoS); */
+			int posicao = ran.nextInt(8)+1; 
 			contadorIDjogador += 1; 
-			Jogadores jogador = new Jogadores(nome, 22, contadorIDjogador, posicao, 3*posicao, i+1, 0);
+			Jogadores jogador = new Jogadores("bbbbb", 22, contadorIDjogador, posicao, 3*posicao, i+1, 0);
 			ctrJogadores.insereJogador(jogador);
 			ctrClube.incluiJogador(jogador, clube2, ctrJogadores);
 			if(i < 11) {
@@ -95,11 +100,12 @@ public class Aplicacao {
 		Partida partida1 = new Partida(clube1, clube2, data, 1, false, 1); 
 		ctrPartida.inserePartida(partida1);
 		
+		
 		ctrPartida.resultadoPartida(partida1, ctrClube);
 		ctrPartida.lista();
 		
-		System.out.println("Clube: "+ clube1.getNome() + "Pontos: " + clube1.getPontosCampAtual() + "Saldo : " + (clube1.getGolsProCampAtual()-clube1.getGolsContraCampAtual()) );
-		System.out.println("Clube: "+ clube2.getNome() + "Pontos: " + clube2.getPontosCampAtual() + "Saldo : " + (clube2.getGolsProCampAtual()-clube2.getGolsContraCampAtual()) );
+		System.out.println(partida1.getClubeCasa().getNome() + " " + partida1.getGolCasa() +  "x" + partida1.getGolFora() + " " + partida1.getClubeFora().getNome());
+		ctrClube.listaClube();
 		
 		
 		

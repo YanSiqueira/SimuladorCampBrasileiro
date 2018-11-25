@@ -9,13 +9,15 @@ public class Fachada {
 	
 	private ControleClube controleClube; 
 	private ControleJogadores controleJogador; 
-//	private ControleClientes clientes;
+	private ControlePartida controlePartida; 
+
 	private static Fachada instance;
 	
 	public Fachada() {
 		controleClube = new ControleClube();
 		controleJogador = new ControleJogadores(); 
-//		clientes = new ControleClientes();
+		controlePartida = new ControlePartida(); 
+
 	}
 	
 	public static Fachada getInstance(){
@@ -41,5 +43,28 @@ public class Fachada {
 		controleJogador.atualizaJogador(jogador);
 	}
 	
+	public void listar() {
+		controleJogador.listarJogadores();
+	}
+	
+	public void cadastrar(Clube clube) {
+		controleClube.insereClube(clube);
+	}
+	
+	public void removerClube(int numeroRegistro) {
+		controleClube.removeClube(numeroRegistro);
+	}
+	
+	public Clube procurarClube(int numeroRegistro) {
+		return controleClube.buscaClube(numeroRegistro); 
+	}
+	
+	public void atualizar(Clube clube) {
+		controleClube.atualizaClube(clube);
+	}
+	
+	public void listarClube() {
+		controleClube.listaClube();
+	}
 
 }

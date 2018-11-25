@@ -64,6 +64,8 @@ public class ControleClube {
 		}
 	}
 	
+	
+	
 	public void incluiJogador(Jogadores jogador, Clube clube, ControleJogadores ctrJogadores) {
 		
 		if(ctrJogadores.buscaJogador(jogador.getNumeroRegistro()) != null) {
@@ -150,10 +152,15 @@ public class ControleClube {
 				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolCasa()); 
 				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolFora()); 
 				
+				
 			}else if(partida.getGolCasa() > partida.getGolFora()) {
 				
 				clube.setPontosCampAtual(clube.getPontosCampAtual()+3);
 				clube.setEmpateCampAtual(clube.getVitoriasCampAtual()+1);
+				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolCasa()); 
+				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolFora()); 
+			}else {
+				clube.setDerrotaCampAtual(clube.getDerrotaCampAtual()+1);
 				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolCasa()); 
 				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolFora()); 
 			}
@@ -173,6 +180,10 @@ public class ControleClube {
 				clube.setEmpateCampAtual(clube.getVitoriasCampAtual()+1);
 				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolFora()); 
 				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolCasa());  
+			}else {
+				clube.setDerrotaCampAtual(clube.getDerrotaCampAtual()+1);
+				clube.setGolsProCampAtual(clube.getGolsProCampAtual()+partida.getGolFora()); 
+				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolCasa()); 
 			}
 			
 		}
