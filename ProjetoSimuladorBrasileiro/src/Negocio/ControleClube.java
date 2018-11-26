@@ -143,7 +143,7 @@ public class ControleClube {
 	
 	public void atualizaDadosClube(Clube clube, Partida partida) {
 		
-		if(clube.getNumeroRegistro() == partida.getClubeCasa().getNumeroRegistro()) {
+		if(clube.getNumeroRegistro() == partida.getClubeCasa()) {
 			
 			if(partida.getGolCasa() == partida.getGolFora()) {
 				
@@ -165,7 +165,7 @@ public class ControleClube {
 				clube.setGolsContraCampAtual(clube.getGolsContraCampAtual()+partida.getGolFora()); 
 			}
 			
-		}else if (clube.getNumeroRegistro() == partida.getClubeFora().getNumeroRegistro()){
+		}else if (clube.getNumeroRegistro() == partida.getClubeFora()){
 			
 			if(partida.getGolCasa() == partida.getGolFora()) {
 				

@@ -1,6 +1,7 @@
 package Repositorio;
 
 import Basicas.Partida;
+import Negocio.ControleClube;
 
 public class RepositorioPartidaArray implements RepositorioPartida{
 	
@@ -54,7 +55,7 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 		// TODO Auto-generated method stub
 		
 		for(int a = 0; a < index; a++) {
-			if(listaPartidas[a].getClubeCasa().getNumeroRegistro() == idTimeCasa && listaPartidas[a].getClubeFora().getNumeroRegistro() == idTimeFora) {
+			if(listaPartidas[a].getClubeCasa() == idTimeCasa && listaPartidas[a].getClubeFora() == idTimeFora) {
 				return listaPartidas[a]; 
 			}
 		}
@@ -74,10 +75,11 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 	}
 
 	@Override
-	public void listar() {
+	public void listar(ControleClube ctrClube) {
 		// TODO Auto-generated method stub
+		
 		for(int a = 0; a < index; a++) {
-			System.out.println("Jogo: " + listaPartidas[a].getClubeCasa().getNome() +  " x "  + listaPartidas[a].getClubeFora().getNome() + " Rodada: " + listaPartidas[a].getRodada());
+			System.out.println("Jogo: " + ctrClube.buscaClube(listaPartidas[a].getClubeCasa()).getNome() +  " x "  + ctrClube.buscaClube(listaPartidas[a].getClubeFora()).getNome() + " Rodada: " + listaPartidas[a].getRodada());
 		}
 		
 	}

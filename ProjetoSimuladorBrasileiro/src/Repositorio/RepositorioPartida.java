@@ -1,6 +1,7 @@
 package Repositorio;
 
 import Basicas.Partida;
+import Negocio.ControleClube;
 
 public interface RepositorioPartida {
 	
@@ -10,7 +11,7 @@ public interface RepositorioPartida {
 	public Partida buscaPartida(int partidaID); 
 	public Partida buscaPartida(int idTimeCasa, int idTimeFora); 
 	public void removePartida(int partidaID);
-	public void listar(); 
+	public void listar(ControleClube ctrClube); 
 	public void listar(int rodada); 
 	
 }

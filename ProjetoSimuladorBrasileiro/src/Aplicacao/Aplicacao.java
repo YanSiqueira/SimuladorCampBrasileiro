@@ -29,11 +29,12 @@ public class Aplicacao {
 		
 		Clube clube1 = new Clube("Santos", 1, 0, 0, 0, 0, 0, 0, "Vila Belmiro", 7);
 		Clube clube2 = new Clube("São Paulo", 2, 0, 0, 0, 0, 0, 0, "Morumbi", 7);
+		Partida partida1 = new Partida(1, 2, data, 1, false, 1); 
 		
 		
 		ctrClube.insereClube(clube1);
 		ctrClube.insereClube(clube2);
-		
+		ctrPartida.inserePartida(partida1);
 		
 		
 		/*Partida partida1 = new Partida(clube1, clube2, data, 1, false, 1); 
@@ -97,14 +98,13 @@ public class Aplicacao {
 		ctrClube.listaJogadores(clube2);
 		System.out.println(" ");
 		
-		Partida partida1 = new Partida(clube1, clube2, data, 1, false, 1); 
-		ctrPartida.inserePartida(partida1);
+		
 		
 		
 		ctrPartida.resultadoPartida(partida1, ctrClube);
-		ctrPartida.lista();
+		ctrPartida.lista(ctrClube);
 		
-		System.out.println(partida1.getClubeCasa().getNome() + " " + partida1.getGolCasa() +  "x" + partida1.getGolFora() + " " + partida1.getClubeFora().getNome());
+		System.out.println(ctrClube.buscaClube(partida1.getClubeCasa()).getNome() + " " + partida1.getGolCasa() +  "x" + partida1.getGolFora() + " " + ctrClube.buscaClube(partida1.getClubeFora()).getNome());
 		ctrClube.listaClube();
 		
 		

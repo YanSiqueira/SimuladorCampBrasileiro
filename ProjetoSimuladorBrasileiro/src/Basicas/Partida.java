@@ -3,8 +3,8 @@ import java.util.Date;
 
 public class Partida {
 	
-	private Clube clubeCasa; 
-	private Clube clubeFora; 
+	private int clubeCasa; 
+	private int clubeFora; 
 	private int golCasa; 
 	private int golFora; 
 	private int golJogadorFora[]; 
@@ -16,7 +16,7 @@ public class Partida {
 	private boolean statusPartida;
 	private int partidaID; 
 	
-	public Partida(Clube clubeCasa, Clube clubeFora, Date data, int rodada, boolean statusPartida, int partidaID) {
+	public Partida(int clubeCasa, int clubeFora, Date data, int rodada, boolean statusPartida, int partidaID) {
 		this.clubeCasa = clubeCasa;
 		this.clubeFora = clubeFora;
 		this.data = data;
@@ -39,19 +39,19 @@ public class Partida {
 
 
 
-	public Clube getClubeCasa() {
-		return clubeCasa;
+	public int getClubeCasa() {
+		return this.clubeCasa;
 	}
 
-	public void setClubeCasa(Clube clubeCasa) {
+	public void setClubeCasa(int clubeCasa) {
 		this.clubeCasa = clubeCasa;
 	}
 
-	public Clube getClubeFora() {
+	public int getClubeFora() {
 		return clubeFora;
 	}
 
-	public void setClubeFora(Clube clubeFora) {
+	public void setClubeFora(int clubeFora) {
 		this.clubeFora = clubeFora;
 	}
 
