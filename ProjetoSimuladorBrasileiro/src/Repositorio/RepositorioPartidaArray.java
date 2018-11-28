@@ -17,8 +17,8 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 	public Partida[] getListaPartidas() {
 		return listaPartidas;
 	}
-
-
+	
+		
 	@Override
 	public void inserirPartida(Partida partida) {
 		// TODO Auto-generated method stub

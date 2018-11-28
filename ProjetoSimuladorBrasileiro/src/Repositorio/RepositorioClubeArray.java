@@ -1,5 +1,6 @@
 package Repositorio;
 import Basicas.Clube;
+import Basicas.Jogadores;
 
 public class RepositorioClubeArray implements RepositorioClube{
 	
@@ -12,6 +13,13 @@ public class RepositorioClubeArray implements RepositorioClube{
 		this.index = 0; 
 	}
 	
+	public int getIndex() {
+		return index;
+	}
+	
+	public Clube[] getListaClube() {
+		return this.listaClubes;
+	}
 	
 	public Clube[] getListaClubes() {
 		return listaClubes;
