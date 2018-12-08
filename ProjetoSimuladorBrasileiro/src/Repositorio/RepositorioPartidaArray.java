@@ -13,6 +13,14 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 		this.index = 0; 
 		this.listaPartidas = new Partida[tamanho]; 
 	}
+	
+	
+
+	public int getIndex() {
+		return index;
+	}
+
+
 
 	public Partida[] getListaPartidas() {
 		return listaPartidas;
@@ -79,7 +87,7 @@ public class RepositorioPartidaArray implements RepositorioPartida{
 		// TODO Auto-generated method stub
 		
 		for(int a = 0; a < index; a++) {
-			System.out.println("Jogo: " + ctrClube.buscaClube(listaPartidas[a].getClubeCasa()).getNome() +  " x "  + ctrClube.buscaClube(listaPartidas[a].getClubeFora()).getNome() + " Rodada: " + listaPartidas[a].getRodada());
+			System.out.println(listaPartidas[a].getPartidaID() +  " Jogo: " + ctrClube.buscaClube(listaPartidas[a].getClubeCasa()).getNome() +  " x "  + ctrClube.buscaClube(listaPartidas[a].getClubeFora()).getNome() + " Rodada: " + listaPartidas[a].getRodada());
 		}
 		
 	}

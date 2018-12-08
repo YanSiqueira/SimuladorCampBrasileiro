@@ -1,18 +1,51 @@
 package Aplicacao;
 
 import Negocio.*;
+import Repositorio.RepositorioJogadoresArquivo;
+
 import javax.swing.JOptionPane;
 
 import Basicas.*;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Random;
 
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Aplicacao {
 	
 	public static void main(String[] args) {
+		
+		/*Jogadores jogador11 = new Jogadores("aaaaa", 12, 1, 1, 3, 1, 5);
+		Jogadores jogador22 = new Jogadores("bbbbb", 22, 2, 1, 3, 1, 1);
+		Jogadores jogador33 = new Jogadores("ccccc", 12, 3, 1, 3, 1, 1);
+		Jogadores jogador44 = new Jogadores("ddddd", 27, 4, 1, 3, 1, 9);
+		Jogadores jogador55 = new Jogadores("eeeee", 27, 5, 1, 3, 1, 2);
+		
+		Jogadores  lista[] = new Jogadores[5];
+		 lista[0] = jogador22;
+		 lista[1] = jogador33;
+		 lista[2] = jogador11;
+		 lista[3] = jogador44;
+		 lista[4] = jogador55;
+		
+		
+		
+		for (int i = 0; i < 5; i++) {
+			System.out.println(lista[i].getNome() + " " + lista[i].getIdade() + " " + lista[i].getGol());
+			
+		}
+		
+		Arrays.sort(lista);
+		
+		for (int i = 0; i < 5; i++) {
+			System.out.println(lista[i].getNome() + " " + lista[i].getIdade() + " " + lista[i].getGol());
+			
+		}*/
 		
 		
 		ControleJogadores ctrJogadores = new ControleJogadores();
@@ -30,7 +63,7 @@ public class Aplicacao {
 		Clube clube2 = new Clube("São Paulo", 3, 0, 0, 0, 0, 0, 0, "Morumbi", 7);
 		Clube clube3 = new Clube("Anapolina", 5, 0, 0, 0, 0, 0, 0, "Vila Belmiro", 7);
 		Clube clube4 = new Clube("Caixias", 7, 0, 0, 0, 0, 0, 0, "Morumbi", 7);
-		/*Partida partida1 = new Partida(1, 2, data, 1, false, 1); */
+		/*Partida partida1 = new Partida(2, 3, data, 1, false, 1); */
 		
 		
 		ctrClube.insereClube(clube1);
@@ -76,7 +109,7 @@ public class Aplicacao {
 		for (int i = 0; i < 20; i++) {
 			/*String nome = JOptionPane.showInputDialog("Digite um nome "); 
 			String posicaoS = JOptionPane.showInputDialog("Digite uma posicao ");
-			int posicao = Integer.parseInt(posicaoS); */
+			int posicao = Integer .parseInt(posicaoS); */
 			int posicao = ran.nextInt(8)+1; 
 			contadorIDjogador += 1; 
 			Jogadores jogador = new Jogadores("bbbbb", 22, contadorIDjogador, posicao, 3*posicao, i+1, 0);
@@ -158,10 +191,53 @@ public class Aplicacao {
 		ctrTabela.GeraPartidasTabela(ctrPartida, ctrClube);
 		
 		/*ctrPartida.resultadoPartida(partida1, ctrClube);*/
-		ctrPartida.lista(ctrClube);
+		
+		System.out.println(" ");
+		ctrTabela.organizaRodadas(ctrPartida, ctrClube);
+		ctrTabela.listaPartidasTabela(ctrPartida, ctrClube);
 		
 		/*System.out.println(ctrClube.buscaClube(partida1.getClubeCasa()).getNome() + " " + partida1.getGolCasa() +  "x" + partida1.getGolFora() + " " + ctrClube.buscaClube(partida1.getClubeFora()).getNome());*/
-		ctrClube.listaClube();
+		
+		System.out.println("Rodada 1 ");
+		
+		ctrTabela.resultadoRodada(ctrTabela.retornaListaPartidas(ctrPartida), ctrClube, 1, ctrPartida);
+		ctrTabela.imprimeResultadoRodada(ctrTabela.retornaListaPartidas(ctrPartida), ctrClube, 1);
+		
+		System.out.println("");
+		
+		System.out.println("Classificação ");
+		
+		ctrTabela.listaClassificacaoTabela(ctrClube);
+		
+		System.out.println("");
+		
+		System.out.println("Rodada 2 ");
+		
+		System.out.println("");
+		
+		ctrTabela.resultadoRodada(ctrTabela.retornaListaPartidas(ctrPartida), ctrClube, 2, ctrPartida);
+		ctrTabela.imprimeResultadoRodada(ctrTabela.retornaListaPartidas(ctrPartida), ctrClube, 2);
+		
+		System.out.println("Classificação ");
+		
+		System.out.println("");
+		
+		ctrTabela.listaClassificacaoTabela(ctrClube);
+		
+		System.out.println("");
+		
+		System.out.println("Rodada 3 ");
+		
+		System.out.println("");
+		
+		ctrTabela.resultadoRodada(ctrTabela.retornaListaPartidas(ctrPartida), ctrClube, 3, ctrPartida);
+		ctrTabela.imprimeResultadoRodada(ctrTabela.retornaListaPartidas(ctrPartida), ctrClube, 3);
+		
+		System.out.println("Classificação ");
+		
+		System.out.println("");
+		
+		ctrTabela.listaClassificacaoTabela(ctrClube);
 		
 		
 		
@@ -190,6 +266,7 @@ public class Aplicacao {
 		
 		System.out.println("");*/
 		
+			
 		
 	}
 

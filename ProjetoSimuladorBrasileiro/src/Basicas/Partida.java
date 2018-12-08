@@ -1,7 +1,7 @@
 package Basicas;
 import java.util.Date;
 
-public class Partida {
+public class Partida implements Comparable<Partida>{
 	
 	private int clubeCasa; 
 	private int clubeFora; 
@@ -119,12 +119,21 @@ public class Partida {
 		this.rodada = rodada;
 	}
 
-	public boolean isStatusPartida() {
+	public boolean getStatusPartida() {
 		return statusPartida;
 	}
 
 	public void setStatusPartida(boolean statusPartida) {
 		this.statusPartida = statusPartida;
+	}
+
+
+
+	@Override
+	public int compareTo(Partida partida) {
+		// TODO Auto-generated method stub
+		int compareRodada = partida.getRodada(); 
+		return this.rodada - compareRodada;
 	} 
 	
 	

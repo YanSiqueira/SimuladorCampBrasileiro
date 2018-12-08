@@ -1,5 +1,5 @@
 package Basicas;
-
+import java.util.Arrays;
 
 public  class  Tabela {
 

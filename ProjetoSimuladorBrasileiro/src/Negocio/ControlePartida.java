@@ -31,7 +31,7 @@ public class ControlePartida {
 	}
 	
 	public Partida buscaPartida(int idPartida) {
-		if(idPartida > 0) {
+		if(idPartida >= 0) {
 			return repositorio.buscaPartida(idPartida); 
 		}else {
 			System.out.println("ID inválido! ");

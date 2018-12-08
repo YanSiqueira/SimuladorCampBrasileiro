@@ -1,7 +1,7 @@
 package Basicas;
 
 
-public class Clube {
+public class Clube implements Comparable<Clube>{
 	
 	private String nome; 
 	private int numeroRegistro; 
@@ -259,10 +259,24 @@ public class Clube {
 	
 	
 	
+	@Override
+	public int compareTo(Clube clube) {
+		// TODO Auto-generated method stub
+		int comparePontos = clube.getPontosCampAtual(); 
+		int comparaVitorias = clube.getVitoriasCampAtual(); 
+		 
+		
+		if(comparePontos != this.pontosCampAtual) {
+			
+			return comparePontos - this.pontosCampAtual;
+			
+		}else{
+			return comparaVitorias - this.vitoriasCampAtual;
+		}
 	
 	
-	
+
+	}
 
 }
-
 

@@ -2,6 +2,7 @@ package Negocio;
 
 import Basicas.Jogadores;
 import Repositorio.RepositorioJogador;
+import Repositorio.RepositorioJogadoresArquivo;
 import Repositorio.RepositorioJogadoresArray;; 
 
 
@@ -9,6 +10,7 @@ public class ControleJogadores {
 	
 	
 	RepositorioJogador repositorioJogador = new RepositorioJogadoresArray(); 
+	/*RepositorioJogador repositorioJogador = RepositorioJogadoresArquivo.getInstance();*/
 	
 	public void insereJogador(Jogadores jogador) {
 		

@@ -11,7 +11,7 @@ package Basicas;
 7- Atacante  */
 
 
-public class Jogadores {
+public class Jogadores implements Comparable<Jogadores> {
 	
 	private String nome; 
 	private int idade; 
@@ -153,7 +153,30 @@ public class Jogadores {
 	
 	
 	
-	
+
+
+
+	@Override
+	public int compareTo(Jogadores jogador) {
+		// TODO Auto-generated method stub
+		int compareIdade = jogador.getIdade();
+		int comparaGol = jogador.getGol(); 
+		
+		if(compareIdade != this.idade) {
+			
+			return compareIdade - this.idade;
+			
+		}else{
+			return comparaGol - this.gol;
+		}
+		
+		
+		
+		
+		//ascendente
+		//return this.quantidade - compareQuantidade;
+		
+	}
 	
 	
 	
