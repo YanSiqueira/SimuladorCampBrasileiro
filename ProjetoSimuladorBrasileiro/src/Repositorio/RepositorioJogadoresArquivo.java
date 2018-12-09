@@ -92,8 +92,7 @@ public class RepositorioJogadoresArquivo implements RepositorioJogador, Serializ
 		
 		this.listaJogadores[index] = jogador; 
 		this.index += 1; 
-		getInstance();
-		salvarArquivo();
+	
 		
 		
 	}

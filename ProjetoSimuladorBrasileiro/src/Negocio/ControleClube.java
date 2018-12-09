@@ -94,11 +94,8 @@ public class ControleClube {
 			
 			if(verificaJogadorClube(clube, numeroRegJogador)) {
 				
-				if(clube.getIndex() < Clube.getTamanhojogador()) {
-					clube.removeJogador(numeroRegJogador);
-				}else {
-					System.out.println("Clube só pode ter "+ Clube.getTamanhojogador() + "jogadores!");
-				}
+				clube.removeJogador(numeroRegJogador);
+				
 			}else {
 				System.out.println("Jogador não foi inserido no Clube!");
 			}

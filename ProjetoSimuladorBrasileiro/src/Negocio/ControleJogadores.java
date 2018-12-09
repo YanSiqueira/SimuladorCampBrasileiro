@@ -16,6 +16,8 @@ public class ControleJogadores {
 		
 		if(jogador != null) {
 			repositorioJogador.inserirJogador(jogador);
+			
+			
 		}else {
 			System.out.println("O Jogador está vazio");
 		}
