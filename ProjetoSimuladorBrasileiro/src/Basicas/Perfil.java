@@ -1,8 +1,5 @@
 package Basicas;
 
-import Negocio.ControleGerenciador;
-import Repositorio.RepositorioPerfisArray;
-//consertei a palavra login
 public abstract class Perfil {
 	//atributos
 	private String nome;
@@ -13,7 +10,7 @@ public abstract class Perfil {
 	public Perfil(String nome, int id, String login, String senha) {
 		super();
 		this.nome = nome;
-		this.id = 10000000;//ID zerado, os dois primeiros digitos são para identificação do tido de conta, "10" para gerenciador e "11" para player.
+		this.id = 10000000;//ID zerado, os dois primeiros digitos sÃ£o para identificaÃ§Ã£o do tido de conta, "10" para gerenciador e "11" para player.
 		this.login = login;
 		this.senha = senha;
 	}
@@ -42,80 +39,64 @@ public abstract class Perfil {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	//métodos
-	public void criar(String nome, String loging, String senha, String confirmarSenha, int tipoDePerfil) {
-		Perfil perf = null;
-		//verificando se o login já exixite.
-		RepositorioPerfisArray rca = new RepositorioPerfisArray();
-		if(rca.buscarLogin(login) == null) {
-			//verificando senha
-			if(senha.length()>4) {
-				if(senha.equals(confirmarSenha)) {
-					//atribundo id da conta
-					char[] Id = new char[8];
-					for(int i=0; i<8; i++) {
-						Id[i] = Integer.toString(this.id).charAt(i);//passando de inteiros para um vetor de char para melhor manipulação dos digitos
-					}
-					if(tipoDePerfil == 0) {//verificando se a conta a ser criada será gerenciador ou player.
-						Id[1] = '0';
-						Perfil perfil = new Gerenciador(nome, this.id, loging, confirmarSenha);
-						perf = perfil;
-					}else {
-						Id[1] = '1';
-						Perfil perfil = new Gerenciador(nome, this.id, loging, confirmarSenha);//alterar "gerenciador" para "player" quando a classe existir
-						perf = perfil;
-					}
-					this.id = Integer.parseInt(String.copyValueOf(Id));//passando de um vetor de char para um numero inteiro.
-					this.id++;
-					//inserindo no repositorio
-					ControleGerenciador cg = new ControleGerenciador();
-					cg.inserir(perf);
-					
-				}
-			}
+	//mÃ©todos
+	public Perfil criar(String nome, String login, String senha, String confirmarSenha, int tipoDePerfil) {
+		Perfil perf=null;
+		//atribundo id da conta
+		this.id++;
+		char[] Id = new char[8];
+		for(int i=0; i<8; i++) {
+			Id[i] = Integer.toString(this.id).charAt(i);//passando de inteiros para um vetor de char para manipular os digitos que identificam se a conta Ã© player ou gerenciador
 		}
-	}
-	public void alterarConta(String novoNome, String novoLogin, String novaSenha, String confirmarNovaSenha, int novoTipoDePerfil) {
-		Perfil perf = null;
-		//verificando se o login já exixite.
-		RepositorioPerfisArray rca = new RepositorioPerfisArray();
-		if(rca.buscarLogin(novoLogin) == null) {
-			//verificando senha
-			if(novaSenha.length()>4) {
-				if(novaSenha.equals(confirmarNovaSenha)) {
-					//atribundo id da conta
-					char[] Id = new char[8];
-					for(int i=0; i<8; i++) {
-						Id[i] = Integer.toString(this.id).charAt(i);//passando de inteiros para um vetor de char para melhor manipulação dos digitos
-					}
-					if(novoTipoDePerfil == 0) {//verificando se a conta a ser criada será gerenciador ou player.
-						Id[1] = '0';
-						Perfil perfil = new Gerenciador(novoNome, this.id, novoLogin, confirmarNovaSenha);
-						perf = perfil;
-					}else {
-						Id[1] = '1';
-						Perfil perfil = new Gerenciador(novoNome, this.id, novoLogin, confirmarNovaSenha);//alterar "gerenciador" para "player" quando a classe existir
-						perf = perfil;
-					}
-					this.id = Integer.parseInt(String.copyValueOf(Id));//passando de um vetor de char para um numero inteiro.
-					//Alterando no repositorio
-					ControleGerenciador cg = new ControleGerenciador();
-					cg.atualizar(perf);
-					
-				}
+		if(tipoDePerfil == 0) {//verificando se a conta a ser criada serÃ¡ gerenciador ou player.
+			Id[1] = '0';
+			this.id = Integer.parseInt(String.copyValueOf(Id));//passando de um vetor de char para um numero inteiro.
+			perf = new Gerenciador(null, 0, null, null);//criando a nova conta
+		}else {
+			Id[1] = '1';
+			this.id = Integer.parseInt(String.copyValueOf(Id));//passando de um vetor de char para um numero inteiro.
+			/*perf = new Player();*/
 			}
-		}
+		perf.setNome(nome);
+		perf.setId(id);
+		perf.setLogin(login);
+		perf.setSenha(senha);
+		return perf;
 	}
-	public boolean loging(String login, String senha) {
+	public Perfil alterarConta(String novoNome, String novaSenha, String confirmarNovaSenha, int novoTipoDePerfil, int id) {
+		Perfil perf = null;
+		//atribundo id da conta
+		char[] Id = new char[8];
+		for(int i=0; i<8; i++) {
+			Id[i] = Integer.toString(id).charAt(i);//passando de inteiros para um vetor de char para melhor manipulaÃ§Ã£o dos digitos
+		}
+		if(novoTipoDePerfil == 0) {//verificando se a conta alterada serÃ¡ gerenciador ou player.
+			Id[1] = '0';
+			this.id = Integer.parseInt(String.copyValueOf(Id));//passando de um vetor de char para um numero inteiro.
+			perf = new Gerenciador(null, 0, null, null);
+		}else {
+			Id[1] = '1';
+			this.id = Integer.parseInt(String.copyValueOf(Id));//passando de um vetor de char para um numero inteiro.
+			/*perf = new Player();*/
+		}
+		perf.setNome(novoNome);
+		perf.setId(id);
+		perf.setLogin(this.login);
+		perf.setSenha(novaSenha);
+		return perf;
+	}
+	public boolean login(String login, String senhaPerfil, String senhaDigitada) {
 		boolean resultadoDoLogin = false;
-		//verificando se o login já exixite.
-		RepositorioPerfisArray rca = new RepositorioPerfisArray();
-		if(rca.buscarLogin(login) != null) {//verifica se o login existe
-			//verificando senha
-			if(senha.equals(rca.buscarLogin(login).senha)) {//verifica se a senha inserida bate com a senha registrada no respectivo loging
-				resultadoDoLogin = true;//confirma loging 
-			}
+			//verifica se a senha inserida bate com a senha registrada no respectivo loging
+			if(senhaDigitada.equals(senhaPerfil)) {
+				//confirma login
+				resultadoDoLogin = true;
 			}
 		return resultadoDoLogin;
 		}
+	@Override
+	public String toString() {
+		return "Perfil [nome=" + nome + ", id=" + id + ", login=" + login + ", senha=" + senha + "]";
+	}
+	
 	}
