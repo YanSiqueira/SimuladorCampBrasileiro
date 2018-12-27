@@ -8,50 +8,93 @@ import Repositorio.RepositorioPerfisArray;
 public class ControleGerenciador {
 	
 	private RepositorioPerfis perfis = new RepositorioPerfisArray();
-	/*private RepositorioJogador jogadores =  new  RepositorioJogadoresArray ();
-	private RepositorioClube clubes = new RepositorioClubeArray();*/
+	private Perfil gerenciador = new Gerenciador(null, 0, null, null);
+	private RepositorioJogador jogadores =  new  RepositorioJogadoresArray ();
+	private RepositorioClube clubes = new RepositorioClubeArray();
 	
-	//metodos
+	//repositorio
 	public void inserir(Perfil perfil) {
 		perfis.inserir(perfil);
 	}
 	public void atualizar(Perfil perfil) {
-		perfis.atualizr(perfil);
+		perfis.atualizar(perfil);
 	}
-	public void buscar(int id) {
-		perfis.buscar(id);
+	public Perfil buscar(int id) {
+		return perfis.buscar(id);
+	}
+	public Perfil buscarLogin(String login) {
+		return perfis.buscarLogin(login);
 	}
 	public void remover(int id) {
 		perfis.remover(id);
 	}
-	//metodos de gerenciador
-	/*public void alteraJogador(Jogadores  jogador) {
-		
-		if(jogador != null) {
-			jogadores.atualizaJogador(jogador);
+	
+	//Perfil
+	public Perfil criar(String nome, String login, String senha, String confirmarSenha, int tipoDePerfil) throws loginJaExisteException, SenhaMuitoCurtaException, SenhasNaoBatemException {
+		Perfil perf = null;
+		//verificando senha
+		if(senha.length()>=4) {
+			if(senha.equals(confirmarSenha)) {
+				//verificando se o login existe
+				if(this.buscarLogin(login) == null) {
+					//chamando metodo que cria o id e monta perfil
+					perf = gerenciador.criar(nome, login, senha, confirmarSenha, tipoDePerfil);
+				}else {
+					loginJaExisteException ljeE = new loginJaExisteException(login);
+					throw ljeE;
+				}
+			}else {
+				SenhasNaoBatemException snbE = new SenhasNaoBatemException(senha, confirmarSenha);
+				throw snbE;
+			}
 		}else {
-			System.out.println("O Jogador está vazio");
+			SenhaMuitoCurtaException smcE = new SenhaMuitoCurtaException(senha);
+			throw smcE;
 		}
+		return perf;
+		
+	}
+	public Perfil altearConta(String novoNome, String novaSenha, String confirmarNovaSenha, int novoTipoDePerfil, int id) throws SenhaMuitoCurtaException, SenhasNaoBatemException {
+		Perfil perf = null;
+		//verificando senha
+		if(novaSenha.length()>=4) {
+			if(novaSenha.equals(confirmarNovaSenha)) {
+					perf = gerenciador.alterarConta(novoNome, novaSenha, confirmarNovaSenha, novoTipoDePerfil, id);
+				}else {
+					SenhasNaoBatemException snbE = new SenhasNaoBatemException(novaSenha, confirmarNovaSenha);
+					throw snbE;
+			}
+		}else {
+			SenhaMuitoCurtaException smcE = new SenhaMuitoCurtaException(novaSenha);
+			throw smcE;
+		}
+		return perf;
+	}
+	public boolean login(String login, String senhaDigitada) {
+		boolean result=false;
+		if(this.buscarLogin(login)!=null) {
+			String senhaPerfil = this.buscarLogin(login).getSenha();
+			result = gerenciador.login(login, senhaPerfil, senhaDigitada);
+		}
+		return result;
+	}
+	
+	//jogador
+	public void alteraJogador(Jogadores  jogador) {
+		
 	}
 	public void alteraClube(Clube clube) {
-		if(clube != null) {
-			clubes.atualizaClube(clube);
-		}else {
-			System.out.println("O clube está vazio");
-		}
+		
 	}
 	public void exclueJogador(int numeroregistro) {
 		
-		if(numeroregistro > 0) {
-			if(jogadores.buscaJogador(numeroregistro) != null) {
-				jogadores.removeJogador(numeroregistro); 
-			}else {
-				System.out.println("Erro, jogador não existe!");
-			}
-			
-		}
 	}
 	public void exclueCampionato() {
 		
-	}*/
+	}
+	@Override
+	public String toString() {
+		return "ControleGerenciador [perfis=" + perfis + ", gerenciador=" + gerenciador + "]";
+	}
+	
 }
