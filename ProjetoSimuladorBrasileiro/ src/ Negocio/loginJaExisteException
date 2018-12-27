@@ -1,0 +1,12 @@
+package NEGOCIOS;
+public class loginJaExisteException extends Exception{
+	private String login;
+	public loginJaExisteException(String login) {
+		super("Este loging já existe.");
+		this.login = login;
+	}
+	public String getLogin() {
+		return login;
+	}
+	
+}
