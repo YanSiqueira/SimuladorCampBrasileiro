@@ -1,0 +1,11 @@
+package NEGOCIOS;
+public class SenhaMuitoCurtaException extends Exception{
+	private String senha;
+	public SenhaMuitoCurtaException(String senha) {
+		super("Senha muito curta.");
+		this.senha = senha;
+	}
+	public String getSenha() {
+		return senha;
+	}
+}
